@@ -1,7 +1,7 @@
 require_relative '../helper'
 
-RSpec.describe Todo::Box do
-  subject{ described_class.new }
+RSpec.describe 'Box' do
+  subject{ Todo::Box.new }
 
   it 'has a todos section' do
     expect{ subject.todos }.not_to raise_error
@@ -10,6 +10,8 @@ RSpec.describe Todo::Box do
   it 'provides todos.store as a Hash' do
     expect(subject.todos.store).to be_a Hash
   end
+
+  it 'has a todos.repo'
 
   describe 'todos.entity' do
     let(:entity) { subject.todos.entity }

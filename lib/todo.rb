@@ -4,4 +4,5 @@ module Todo
   autoload :VERSION, 'todo/version'
   autoload :Cli, 'todo/cli'
   autoload :Box, 'todo/box'
+  autoload :TodosRepo, 'todo/todos_repo'
 end
