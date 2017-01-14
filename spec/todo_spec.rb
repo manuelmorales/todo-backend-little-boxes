@@ -1,7 +1,7 @@
 require_relative 'helper'
 
 RSpec.describe 'Todo' do
-  it 'is a module' do
-    expect(Todo).to be_a Module
+  it 'is has a version' do
+    expect(Todo::VERSION).to eq '0.0.1'
   end
 end
