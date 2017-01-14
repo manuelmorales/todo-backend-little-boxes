@@ -24,4 +24,22 @@ RSpec.describe 'TodosRepo' do
 
     expect(todo.id).not_to be_nil
   end
+
+  it 'finds the todo' do
+    store[37] = {
+      id: 37,
+      title: 'laundry',
+      completed: true,
+    }
+
+    todo = repo.find(37)
+
+    expect(todo.id).to eq 37
+    expect(todo.title).to eq 'laundry'
+    expect(todo.completed).to eq true
+  end
+
+  it 'returns nil when not found' do
+    expect(repo.find(37)).to be_nil
+  end
 end

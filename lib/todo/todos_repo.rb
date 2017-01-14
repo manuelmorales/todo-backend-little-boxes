@@ -14,5 +14,11 @@ module Todo
         completed: todo.completed,
       }
     end
+
+    def find(id)
+      if data = store[id]
+        OpenStruct.new data
+      end
+    end
   end
 end
