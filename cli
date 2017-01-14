@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require 'bundler'
+Bundler.setup
+
+require_relative 'lib/todo'
+
+Todo::Cli.start

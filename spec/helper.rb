@@ -4,6 +4,7 @@ require 'pry'
 
 $LOAD_PATH.unshift File.expand_path('lib')
 require 'todo'
+include Todo
 
 RSpec.configure do |c|
   c.color = true
