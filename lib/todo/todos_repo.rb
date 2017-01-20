@@ -4,7 +4,7 @@ module Todo
   class TodosRepo
     include LittleBoxes::Configurable
 
-    dependency :store
+    dependency(:store) { {} }
     dependency(:new_todo) { OpenStruct.method(:new) }
 
     def save(todo)

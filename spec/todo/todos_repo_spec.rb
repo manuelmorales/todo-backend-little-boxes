@@ -3,8 +3,8 @@ require_relative '../helper'
 require 'ostruct'
 
 RSpec.describe 'TodosRepo' do
-  let(:repo) { TodosRepo.new(store: store) }
-  let(:store) { {} }
+  let(:repo) { TodosRepo.new }
+  let(:store) { repo.store }
 
   it 'can store a todo in the store' do
     todo = OpenStruct.new(title: 'desc', completed: true)
