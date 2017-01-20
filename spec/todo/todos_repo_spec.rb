@@ -42,4 +42,16 @@ RSpec.describe 'TodosRepo' do
   it 'returns nil when not found' do
     expect(repo.find(37)).to be_nil
   end
+
+  it 'uses new_todo() to build the todo' do
+    repo.new_todo = lambda { |args| :some_todo }
+
+    store[37] = {
+      id: 37,
+      title: 'laundry',
+      completed: true,
+    }
+
+    expect(repo.find 37).to be :some_todo
+  end
 end

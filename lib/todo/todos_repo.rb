@@ -5,6 +5,7 @@ module Todo
     include LittleBoxes::Configurable
 
     dependency :store
+    dependency(:new_todo) { OpenStruct.method(:new) }
 
     def save(todo)
       todo.id = SecureRandom.uuid
@@ -17,7 +18,7 @@ module Todo
 
     def find(id)
       if data = store[id]
-        OpenStruct.new data
+        new_todo.(data)
       end
     end
   end
