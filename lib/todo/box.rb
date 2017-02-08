@@ -4,29 +4,19 @@ module Todo
   class Box
     include LittleBoxes::Box
 
+    let(:rack_app) { |box| box.todos.rack_app }
+
     box(:todos) do
-      let(:entity) do
-        Struct.new :description, :done
+      let(:entity) { TodoEntity }
+
+      let(:repo) { TodosRepo.new }.then do |repo, box|
+        repo.new_todo = box.entity.method(:new)
       end
 
-      let(:repo) { TodosRepo.new }
+      let(:rack_app, &TodosHanamiRouter)
 
-      let(:api) { }
-    end
-
-    let(:rack_app) do |box|
-      require 'hanami/router'
-
-      Hanami::Router.new do
-        get '/todos', to: -> (env) do
-          all = box.todos.repo.find_all
-
-          [
-            200,
-            {'Content-Type' => 'application/json'},
-            [all.map{ |t| {title: t.title, completed: t.completed} }.to_json]
-          ]
-        end
+      box :endpoints do
+        letc(:list) { ListTodosEndpoint.new }
       end
     end
   end

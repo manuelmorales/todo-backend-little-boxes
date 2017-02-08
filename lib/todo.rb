@@ -4,6 +4,9 @@ module Todo
   autoload :VERSION, 'todo/version'
   autoload :Cli, 'todo/cli'
   autoload :Box, 'todo/box'
+  autoload :TodoEntity, 'todo/todo_entity'
   autoload :TodosRepo, 'todo/todos_repo'
   autoload :TodosApi, 'todo/todos_api'
+  autoload :ListTodosEndpoint, 'todo/list_todos_endpoint'
+  autoload :TodosHanamiRouter, 'todo/todos_hanami_router'
 end

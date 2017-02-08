@@ -19,18 +19,18 @@ RSpec.describe 'Box' do
   describe 'todos.entity' do
     let(:entity) { subject.todos.entity }
 
-    it 'can be done' do
+    it 'can be completed' do
       todo = entity.new
 
-      todo.done = true
-      expect(todo.done).to eq true
+      todo.completed = true
+      expect(todo.completed).to eq true
     end
 
-    it 'has a description' do
+    it 'has a title' do
       todo = entity.new
 
-      todo.description = 'Do the laundry'
-      expect(todo.description).to eq 'Do the laundry'
+      todo.title = 'Do the laundry'
+      expect(todo.title).to eq 'Do the laundry'
     end
   end
 end
