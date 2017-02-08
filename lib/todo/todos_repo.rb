@@ -21,5 +21,9 @@ module Todo
         new_todo.(data)
       end
     end
+
+    def find_all
+      store.values.map(&new_todo)
+    end
   end
 end

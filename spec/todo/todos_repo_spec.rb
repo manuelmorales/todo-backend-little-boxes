@@ -55,5 +55,14 @@ RSpec.describe 'TodosRepo' do
     expect(repo.find 37).to be :some_todo
   end
 
-  it 'returns all of them with #find_all'
+  it 'returns all of them with #find_all' do
+    store[37] = { id: 37 }
+    store[38] = { id: 38 }
+
+    todos = repo.find_all
+
+    expect(todos.length).to eq 2
+    expect(todos[0].id).to eq 37
+    expect(todos[1].id).to eq 38
+  end
 end
