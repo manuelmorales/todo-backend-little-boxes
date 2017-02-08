@@ -11,9 +11,8 @@ RSpec.describe 'Box' do
     expect(subject.todos.repo).to be_a TodosRepo
   end
 
-  it 'has an api' do
-    pending
-    expect(subject.todos.api).not_to be nil
+  it 'has a rack_app' do
+    expect(subject.rack_app).not_to be nil
   end
 
   describe 'todos.entity' do
