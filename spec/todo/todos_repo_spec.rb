@@ -54,4 +54,6 @@ RSpec.describe 'TodosRepo' do
 
     expect(repo.find 37).to be :some_todo
   end
+
+  it 'returns all of them with #find_all'
 end

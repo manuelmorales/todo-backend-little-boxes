@@ -5,4 +5,5 @@ module Todo
   autoload :Cli, 'todo/cli'
   autoload :Box, 'todo/box'
   autoload :TodosRepo, 'todo/todos_repo'
+  autoload :TodosApi, 'todo/todos_api'
 end

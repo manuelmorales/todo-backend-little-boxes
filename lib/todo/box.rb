@@ -5,11 +5,13 @@ module Todo
     include LittleBoxes::Box
 
     box(:todos) do
-      let(:store) { Hash.new }
-
       let(:entity) do
         Struct.new :description, :done
       end
+
+      let(:repo) { TodosRepo.new }
+
+      let(:api) { }
     end
   end
 end

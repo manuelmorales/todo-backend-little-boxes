@@ -7,11 +7,14 @@ RSpec.describe 'Box' do
     expect{ subject.todos }.not_to raise_error
   end
 
-  it 'provides todos.store as a Hash' do
-    expect(subject.todos.store).to be_a Hash
+  it 'has a todos.repo' do
+    expect(subject.todos.repo).to be_a TodosRepo
   end
 
-  it 'has a todos.repo'
+  it 'has an api' do
+    pending
+    expect(subject.todos.api).not_to be nil
+  end
 
   describe 'todos.entity' do
     let(:entity) { subject.todos.entity }
