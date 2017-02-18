@@ -23,6 +23,7 @@ module Todo
 
       box :endpoints do
         letc(:list) { ListTodosEndpoint.new }
+        letc(:create) { CreateTodoEndpoint.new }
       end
     end
   end

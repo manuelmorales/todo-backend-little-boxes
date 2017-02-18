@@ -42,9 +42,7 @@ RSpec.describe 'API' do
 
     describe 'on success' do
       it 'returns 200' do
-        pending
-
-        expect(response.status).to eq 200
+        expect(response.status).to eq 201
       end
     end
   end
