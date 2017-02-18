@@ -1,3 +1,5 @@
+require 'json'
+
 module Todo
   class ListTodosEndpoint
     include LittleBoxes::Configurable

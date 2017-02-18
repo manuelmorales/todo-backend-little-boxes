@@ -36,4 +36,23 @@ RSpec.describe 'API' do
       end
     end
   end
+
+  describe 'POST /todos' do
+    let(:response) { post '/todos', {title: 'laundry', completed: 'true'}.to_json, { 'Content-Type' => 'application/json' } }
+
+    describe 'on success' do
+      it 'returns 200' do
+        pending
+
+        expect(response.status).to eq 200
+      end
+    end
+  end
+
+  describe 'CORS' do
+    it 'respondes the right headers to the OPTIONS method' do
+      response = options '/whatever'
+      expect(response.status).to be 200
+    end
+  end
 end

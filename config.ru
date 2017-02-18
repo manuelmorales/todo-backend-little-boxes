@@ -1,1 +1,1 @@
-run Todo::Box.racks.main
+run Todo::Box.new.rack_app

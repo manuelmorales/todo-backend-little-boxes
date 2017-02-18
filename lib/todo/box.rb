@@ -13,7 +13,13 @@ module Todo
         repo.new_todo = box.entity.method(:new)
       end
 
-      let(:rack_app, &TodosHanamiRouter)
+      box(:racks) do
+        let(:todos, &TodosHanamiRouter)
+        let(:main) { |b| AllowCorsRackMiddleware.new(b.todos) }
+        let(:allow_cors_middleware) { AllowCorsRackMiddleware }
+      end
+
+      let(:rack_app) { |b| b.racks.main }
 
       box :endpoints do
         letc(:list) { ListTodosEndpoint.new }

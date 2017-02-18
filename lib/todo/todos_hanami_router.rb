@@ -4,6 +4,7 @@ module Todo
 
     Hanami::Router.new do
       get '/todos', to: box.endpoints.list
+      options '/*', to: box.allow_cors_middleware.new
     end
   end
 end
