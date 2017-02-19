@@ -32,4 +32,7 @@ RSpec.describe 'Box' do
       expect(todo.title).to eq 'Do the laundry'
     end
   end
+
+  it 'has attribute order'
+  it 'has a serializer'
 end
