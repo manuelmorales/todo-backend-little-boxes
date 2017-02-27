@@ -51,6 +51,7 @@ RSpec.describe 'API' do
     it 'respondes the right headers to the OPTIONS method' do
       response = options '/whatever'
       expect(response.status).to be 200
+      expect(response.headers['Access-Control-Allow-Origin']).to eq '*'
     end
   end
 end
