@@ -32,7 +32,11 @@ module Todo
         letc(:delete) { DeleteTodoEndpoint.new }
         letc(:delete_all) { DeleteAllTodosEndpoint.new }
         letc(:serialize) { TodosApiSerializer.new }
-        let(:todo_url) { |box| -> (todo) { "#{box.cfg[:url]}/todos/#{todo.id}" } }
+        let(:todo_url) { |box| box.router.method(:todo_url) }
+
+        letc(:router) { Router.new }.then do |router, box|
+          router.server_url = box.cfg[:url]
+        end
       end
     end
   end
