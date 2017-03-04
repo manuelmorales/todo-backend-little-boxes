@@ -7,7 +7,7 @@ RSpec.describe 'TodosRepo' do
   let(:store) { repo.store }
 
   it 'can store a todo in the store' do
-    todo = OpenStruct.new(title: 'desc', completed: true)
+    todo = OpenStruct.new(title: 'desc', completed: true, order: 0)
 
     repo.save(todo)
 
@@ -15,6 +15,7 @@ RSpec.describe 'TodosRepo' do
 
     expect(data[:title]).to eq 'desc'
     expect(data[:completed]).to eq true
+    expect(data[:order]).to eq 0
   end
 
   it 'provides an id' do
@@ -30,6 +31,7 @@ RSpec.describe 'TodosRepo' do
       id: 37,
       title: 'laundry',
       completed: true,
+      order: 0,
     }
 
     todo = repo.find(37)
@@ -37,6 +39,7 @@ RSpec.describe 'TodosRepo' do
     expect(todo.id).to eq 37
     expect(todo.title).to eq 'laundry'
     expect(todo.completed).to eq true
+    expect(todo.order).to eq 0
   end
 
   it 'returns nil when not found' do

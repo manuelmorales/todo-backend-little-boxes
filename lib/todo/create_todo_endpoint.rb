@@ -13,7 +13,7 @@ module Todo
       [
         201,
         {'Content-Type' => 'application/json', 'Location' => "/todos/#{todo.id}"},
-        [{title: todo.title, completed: todo.completed}.to_json]
+        [{title: todo.title, completed: todo.completed, order: todo.order}.to_json]
       ]
     end
   end

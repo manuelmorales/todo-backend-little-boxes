@@ -24,4 +24,12 @@ RSpec.describe 'TodoEntity' do
     todo.id = 3
     expect(todo.id).to be 3
   end
+
+  it 'has an order' do
+    todo = TodoEntity.new completed: true, id: 2, order: 20
+    expect(todo.order).to be 20
+
+    todo.order = 21
+    expect(todo.order).to be 21
+  end
 end

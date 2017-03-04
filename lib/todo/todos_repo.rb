@@ -13,6 +13,7 @@ module Todo
       store[todo.id] = {
         title: todo.title,
         completed: todo.completed,
+        order: todo.order,
       }
     end
 

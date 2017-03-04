@@ -1,6 +1,6 @@
 module Todo
   class TodoEntity
-    attr_accessor :title, :completed, :id
+    attr_accessor :title, :completed, :id, :order
 
     def initialize(attrs = {})
       attrs.each do |key, value|

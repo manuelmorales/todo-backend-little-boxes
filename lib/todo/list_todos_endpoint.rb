@@ -12,7 +12,7 @@ module Todo
       [
         200,
         {'Content-Type' => 'application/json'},
-        [all.map{ |t| {title: t.title, completed: t.completed} }.to_json]
+        [all.map{ |t| {title: t.title, completed: t.completed, order: t.order} }.to_json]
       ]
     end
   end

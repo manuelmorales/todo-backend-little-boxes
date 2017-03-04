@@ -24,7 +24,7 @@ RSpec.describe 'API' do
     end
 
     describe 'with a Todo' do
-      let(:todo) { OpenStruct.new(title: 'laundry', completed: true) }
+      let(:todo) { OpenStruct.new(title: 'laundry', completed: true, order: 0) }
       let(:repo) { box.todos.repo }
       before { repo.save todo }
 
@@ -32,7 +32,11 @@ RSpec.describe 'API' do
         expect(response.headers['Content-Type']).to match(/application\/json/)
 
         body = JSON.parse(response.body)
-        expect(body).to eq [{"title"=>"laundry", "completed"=>true}]
+        expect(body).to eq [{
+          "title"=>"laundry",
+          "completed"=>true,
+          "order"=>0,
+        }]
       end
     end
   end
