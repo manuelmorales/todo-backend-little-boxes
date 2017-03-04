@@ -7,6 +7,11 @@ RSpec.describe 'API' do
   let(:box) { Box.new }
   let(:app) { box.rack_app }
 
+  def response_body
+    JSON.parse(last_response.body)
+  end
+
+
   describe 'GET /todos' do
     let(:response) { get '/todos' }
 
@@ -42,12 +47,41 @@ RSpec.describe 'API' do
   end
 
   describe 'POST /todos' do
-    let(:response) { post '/todos', {title: 'laundry', completed: 'true'}.to_json, { 'Content-Type' => 'application/json' } }
+    it 'creates a todo' do
+      post(
+        '/todos',
+        { title: 'laundry', completed: true, order: 9 }.to_json,
+        { 'Content-Type' => 'application/json' },
+      )
 
-    describe 'on success' do
-      it 'returns 200' do
-        expect(response.status).to eq 201
-      end
+      expect(last_response.status).to be 201
+      expect(response_body).to include('title' => 'laundry')
+
+      id = last_response.headers['Location'].split('/').last
+
+      get "/todos"
+      expect(last_response.status).to be 200
+      expect(response_body.first).to include('title' => 'laundry')
+    end
+  end
+
+  describe 'DELETE /todos' do
+    it 'deletes a todo' do
+      post(
+        '/todos',
+        { title: 'laundry', completed: true, order: 9 }.to_json,
+        { 'Content-Type' => 'application/json' },
+      )
+
+      expect(last_response.status).to be 201
+      id = last_response.headers['Location'].split('/').last
+
+      delete "/todos/#{id}"
+      expect(last_response.status).to be 200
+
+      get "/todos"
+      expect(last_response.status).to be 200
+      expect(response_body).to be_empty
     end
   end
 

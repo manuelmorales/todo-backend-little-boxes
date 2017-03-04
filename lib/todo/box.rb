@@ -24,6 +24,7 @@ module Todo
       box :endpoints do
         letc(:list) { ListTodosEndpoint.new }
         letc(:create) { CreateTodoEndpoint.new }
+        letc(:delete) { DeleteTodoEndpoint.new }
       end
     end
   end

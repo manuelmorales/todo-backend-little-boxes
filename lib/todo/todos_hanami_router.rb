@@ -5,6 +5,7 @@ module Todo
     Hanami::Router.new do
       get '/todos', to: box.endpoints.list
       post '/todos', to: box.endpoints.create
+      delete '/todos/:id', to: box.endpoints.delete
       options '/*', to: box.allow_cors_middleware.new
     end
   end

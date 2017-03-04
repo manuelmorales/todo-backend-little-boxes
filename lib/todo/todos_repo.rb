@@ -26,5 +26,9 @@ module Todo
     def find_all
       store.values.map(&new_todo)
     end
+
+    def delete(id)
+      store.delete(id)
+    end
   end
 end

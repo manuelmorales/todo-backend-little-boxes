@@ -1,3 +1,5 @@
+require 'little_boxes'
+
 module Todo
   class DeleteTodoEndpoint
     include LittleBoxes::Configurable
@@ -5,7 +7,7 @@ module Todo
     dependency :repo
 
     def call(env)
-      id = env['PATH_INFO'].split('/').last.to_i
+      id = env['router.params'][:id]
       repo.delete id
 
       [200, {}, []]

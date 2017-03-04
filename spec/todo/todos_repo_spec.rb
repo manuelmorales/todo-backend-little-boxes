@@ -68,4 +68,10 @@ RSpec.describe 'TodosRepo' do
     expect(todos[0].id).to eq 37
     expect(todos[1].id).to eq 38
   end
+
+  it 'deletes todos by id' do
+    store[37] = {}
+    repo.delete(37)
+    expect(store).to be_empty
+  end
 end

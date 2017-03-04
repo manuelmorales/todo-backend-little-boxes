@@ -7,7 +7,14 @@ RSpec.describe 'API' do
   let(:app) { DeleteTodoEndpoint.new repo: repo }
 
   describe 'DELETE /todos/:id' do
-    let(:response) { delete '/todos/37' }
+    let(:response) do
+      delete(
+        '/todos/an-uuid',
+        {},
+        {"router.params" => { id: "an-uuid"} }
+      )
+    end
+
     let(:repo) { double(:repo, delete: true ) }
 
     describe 'on success' do
@@ -16,9 +23,13 @@ RSpec.describe 'API' do
       end
 
       it 'deletes the todo from the repo' do
-        expect(repo).to receive(:delete).with(37)
+        expect(repo).to receive(:delete).with('an-uuid')
         response
       end
+    end
+
+    describe 'on not found' do
+      it 'returns 404'
     end
   end
 end
