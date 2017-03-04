@@ -65,7 +65,7 @@ RSpec.describe 'API' do
     end
   end
 
-  describe 'DELETE /todos' do
+  describe 'DELETE /todos/:id' do
     it 'deletes a todo' do
       post(
         '/todos',
@@ -77,6 +77,26 @@ RSpec.describe 'API' do
       id = last_response.headers['Location'].split('/').last
 
       delete "/todos/#{id}"
+      expect(last_response.status).to be 200
+
+      get "/todos"
+      expect(last_response.status).to be 200
+      expect(response_body).to be_empty
+    end
+  end
+
+  describe 'DELETE /todos' do
+    it 'deletes all todos' do
+      post(
+        '/todos',
+        { title: 'laundry', completed: true, order: 9 }.to_json,
+        { 'Content-Type' => 'application/json' },
+      )
+
+      expect(last_response.status).to be 201
+      id = last_response.headers['Location'].split('/').last
+
+      delete "/todos"
       expect(last_response.status).to be 200
 
       get "/todos"

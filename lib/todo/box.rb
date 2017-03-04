@@ -25,6 +25,7 @@ module Todo
         letc(:list) { ListTodosEndpoint.new }
         letc(:create) { CreateTodoEndpoint.new }
         letc(:delete) { DeleteTodoEndpoint.new }
+        letc(:delete_all) { DeleteAllTodosEndpoint.new }
       end
     end
   end

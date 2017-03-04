@@ -10,6 +10,7 @@ module Todo
   autoload :ListTodosEndpoint, 'todo/list_todos_endpoint'
   autoload :CreateTodoEndpoint, 'todo/create_todo_endpoint'
   autoload :DeleteTodoEndpoint, 'todo/delete_todo_endpoint'
+  autoload :DeleteAllTodosEndpoint, 'todo/delete_all_todos_endpoint'
   autoload :TodosHanamiRouter, 'todo/todos_hanami_router'
   autoload :AllowCorsRackMiddleware, 'allow_cors_rack_middleware'
 end

@@ -74,4 +74,10 @@ RSpec.describe 'TodosRepo' do
     repo.delete(37)
     expect(store).to be_empty
   end
+
+  it 'deletes all todos with delete_all()' do
+    store[37] = {}
+    repo.delete_all
+    expect(store).to be_empty
+  end
 end

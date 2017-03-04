@@ -30,5 +30,9 @@ module Todo
     def delete(id)
       store.delete(id)
     end
+
+    def delete_all
+      store.clear
+    end
   end
 end
