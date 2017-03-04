@@ -112,4 +112,8 @@ RSpec.describe 'API' do
       expect(response.headers['Access-Control-Allow-Origin']).to eq '*'
     end
   end
+
+  it 'has a completed field'
+  it 'has a patch verb'
+  it 'has a URL field'
 end

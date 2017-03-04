@@ -7,10 +7,22 @@ module Todo
     end
 
     def call(env)
-      @app.call(env).tap do |resp|
-        resp[1]['Access-Control-Allow-Headers'] = resp[1].keys.join(", ")
-        resp[1]['Access-Control-Allow-Origin'] = '*'
+      resp = @app.call(env).dup
+      resp[1] = headers = resp[1].dup
+
+      headers = resp[1] = resp[1].dup
+
+      if allow_headers = env['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']
+        headers['Access-Control-Allow-Headers'] = allow_headers
       end
+
+      if allow_methods = env['HTTP_ACCESS_CONTROL_REQUEST_METHOD']
+        headers['Access-Control-Allow-Methods'] = allow_methods
+      end
+
+      headers['Access-Control-Allow-Origin'] = '*'
+
+      resp
     end
   end
 end
