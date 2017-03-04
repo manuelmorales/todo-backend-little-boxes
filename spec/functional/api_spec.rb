@@ -11,7 +11,7 @@ RSpec.describe 'API' do
     end
   end
 
-  let(:app) { box.rack_app }
+  let(:app) { box.rack.main }
 
   def response_body
     JSON.parse(last_response.body)

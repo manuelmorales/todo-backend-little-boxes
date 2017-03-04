@@ -5,10 +5,17 @@ module Todo
     include LittleBoxes::Box
 
     letc(:app) { App.new }
-
     let(:cfg) { Cfg.load }
 
-    let(:rack_app) { |box| box.todos.rack_app }
+    box(:rack) do
+      letc(:router) { Router.new }.then do |router, box|
+        router.server_url = box.cfg[:url]
+        router.todos = box.todos.endpoints
+      end
+
+      let(:main) { |box| box.router.build_rack }
+      let(:allow_cors_middleware) { AllowCorsRackMiddleware }
+    end
 
     box(:todos) do
       let(:entity) { TodoEntity }
@@ -17,14 +24,6 @@ module Todo
         repo.new_todo = box.entity.method(:new)
       end
 
-      box(:racks) do
-        let(:todos, &TodosHanamiRouter)
-        let(:main) { |b| AllowCorsRackMiddleware.new(b.todos) }
-        let(:allow_cors_middleware) { AllowCorsRackMiddleware }
-      end
-
-      let(:rack_app) { |b| b.racks.main }
-
       box :endpoints do
         letc(:show) { ShowTodoEndpoint.new }
         letc(:list) { ListTodosEndpoint.new }
@@ -32,11 +31,7 @@ module Todo
         letc(:delete) { DeleteTodoEndpoint.new }
         letc(:delete_all) { DeleteAllTodosEndpoint.new }
         letc(:serialize) { TodosApiSerializer.new }
-        let(:todo_url) { |box| box.router.method(:todo_url) }
-
-        letc(:router) { Router.new }.then do |router, box|
-          router.server_url = box.cfg[:url]
-        end
+        let(:todo_url) { |box| box.rack.router.method(:todo_url) }
       end
     end
   end
