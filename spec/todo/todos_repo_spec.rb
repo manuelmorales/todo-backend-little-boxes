@@ -47,7 +47,7 @@ RSpec.describe 'TodosRepo' do
   end
 
   it 'uses new_todo() to build the todo' do
-    repo.new_todo = lambda { |args| :some_todo }
+    repo.new_todo = lambda { |args| args }
 
     store[37] = {
       id: 37,
@@ -55,18 +55,22 @@ RSpec.describe 'TodosRepo' do
       completed: true,
     }
 
-    expect(repo.find 37).to be :some_todo
+    expect(repo.find 37).to eq({
+      id: 37,
+      title: 'laundry',
+      completed: true,
+    })
   end
 
   it 'returns all of them with #find_all' do
-    store[37] = { id: 37 }
-    store[38] = { id: 38 }
+    store[37] = { id: 37, title: 'laundry' }
+    store[38] = { id: 38, title: 'homework' }
 
     todos = repo.find_all
 
     expect(todos.length).to eq 2
-    expect(todos[0].id).to eq 37
     expect(todos[1].id).to eq 38
+    expect(todos[1].title).to eq 'homework'
   end
 
   it 'deletes todos by id' do

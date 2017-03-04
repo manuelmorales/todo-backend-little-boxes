@@ -49,6 +49,7 @@ RSpec.describe 'API' do
 
         body = JSON.parse(response.body)
         expect(body.first['title']).to eq 'laundry'
+        expect(body.first['id']).not_to be nil
       end
     end
   end
@@ -66,10 +67,10 @@ RSpec.describe 'API' do
 
       id = last_response.headers['Location'].split('/').last
 
-      get "/todos"
+      get "/todos/#{id}"
       expect(last_response.status).to be 200
-      expect(response_body.first).to include('title' => 'laundry')
-      expect(response_body.first['url']).to match(/^\/todos\/.*/)
+      expect(response_body).to include('title' => 'laundry')
+      expect(response_body['url']).to match(/^\/todos\/.*/)
     end
   end
 

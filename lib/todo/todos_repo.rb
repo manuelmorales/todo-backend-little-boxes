@@ -11,6 +11,7 @@ module Todo
       todo.id = SecureRandom.uuid
 
       store[todo.id] = {
+        id: todo.id,
         title: todo.title,
         completed: todo.completed,
         order: todo.order,
