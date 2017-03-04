@@ -22,6 +22,7 @@ module Todo
       let(:rack_app) { |b| b.racks.main }
 
       box :endpoints do
+        letc(:show) { ShowTodoEndpoint.new }
         letc(:list) { ListTodosEndpoint.new }
         letc(:create) { CreateTodoEndpoint.new }
         letc(:delete) { DeleteTodoEndpoint.new }

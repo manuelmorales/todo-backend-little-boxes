@@ -4,6 +4,7 @@ module Todo
 
     Hanami::Router.new do
       get '/todos', to: box.endpoints.list
+      get '/todos/:id', to: box.endpoints.show
       post '/todos', to: box.endpoints.create
       delete '/todos/:id', to: box.endpoints.delete
       delete '/todos', to: box.endpoints.delete_all
