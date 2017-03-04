@@ -1,8 +1,8 @@
 require_relative '../helper'
 
 RSpec.describe 'TodosApiSerializer' do
-  let(:serializer) { TodosApiSerializer.new todo_path: todo_path }
-  let(:todo_path) { -> (todo) { '/the.url' } }
+  let(:serializer) { TodosApiSerializer.new todo_url: todo_url }
+  let(:todo_url) { -> (todo) { 'http://example.com/the.url' } }
 
   let(:todo) do
     TodoEntity.new(
@@ -23,6 +23,6 @@ RSpec.describe 'TodosApiSerializer' do
   end
 
   it 'has a url' do
-    expect(serializer.(todo)).to include(url: '/the.url')
+    expect(serializer.(todo)).to include(url: 'http://example.com/the.url')
   end
 end

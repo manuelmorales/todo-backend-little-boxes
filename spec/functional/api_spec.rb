@@ -4,7 +4,13 @@ require'json'
 
 RSpec.describe 'API' do
   include Rack::Test::Methods
-  let(:box) { Box.new }
+
+  let(:box) do
+    Box.new.tap do |box|
+      box.cfg.merge!({ port: 9292, url: 'http://example.com' })
+    end
+  end
+
   let(:app) { box.rack_app }
 
   def response_body
@@ -70,7 +76,7 @@ RSpec.describe 'API' do
       get "/todos/#{id}"
       expect(last_response.status).to be 200
       expect(response_body).to include('title' => 'laundry')
-      expect(response_body['url']).to match(/^\/todos\/.*/)
+      expect(response_body['url']).to start_with('http://example.com/todos')
     end
   end
 

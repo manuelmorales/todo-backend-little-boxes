@@ -2,7 +2,7 @@ module Todo
   class TodosApiSerializer
     include LittleBoxes::Configurable
 
-    dependency :todo_path
+    dependency :todo_url
 
     def call(todo)
       {
@@ -10,7 +10,7 @@ module Todo
         title: todo.title,
         completed: todo.completed,
         order: todo.order,
-        url: todo_path.(todo),
+        url: todo_url.(todo),
       }
     end
   end

@@ -11,8 +11,13 @@ module Todo
 
     desc 'start', 'Starts the Puma and any other required thread'
     def start(*args)
-      require 'puma/cli'
-      Puma::CLI.new(args).run
+      box.app.start
+    end
+
+    private
+
+    def box
+      @box ||= Box.new
     end
   end
 end

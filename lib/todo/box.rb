@@ -4,6 +4,10 @@ module Todo
   class Box
     include LittleBoxes::Box
 
+    letc(:app) { App.new }
+
+    let(:cfg) { Cfg.load }
+
     let(:rack_app) { |box| box.todos.rack_app }
 
     box(:todos) do
@@ -28,7 +32,7 @@ module Todo
         letc(:delete) { DeleteTodoEndpoint.new }
         letc(:delete_all) { DeleteAllTodosEndpoint.new }
         letc(:serialize) { TodosApiSerializer.new }
-        let(:todo_path) { -> (todo) { "/todos/#{todo.id}" } }
+        let(:todo_url) { |box| -> (todo) { "#{box.cfg[:url]}/todos/#{todo.id}" } }
       end
     end
   end
