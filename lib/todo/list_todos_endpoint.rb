@@ -5,6 +5,7 @@ module Todo
     include LittleBoxes::Configurable
 
     dependency :repo
+    dependency :serializer
 
     def call(env)
       all = repo.find_all
@@ -12,7 +13,7 @@ module Todo
       [
         200,
         {'Content-Type' => 'application/json'},
-        [all.map{ |t| {title: t.title, completed: t.completed, order: t.order} }.to_json]
+        [all.map{ |t| serializer.dump(t) }.to_json]
       ]
     end
   end

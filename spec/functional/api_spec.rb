@@ -37,11 +37,7 @@ RSpec.describe 'API' do
         expect(response.headers['Content-Type']).to match(/application\/json/)
 
         body = JSON.parse(response.body)
-        expect(body).to eq [{
-          "title"=>"laundry",
-          "completed"=>true,
-          "order"=>0,
-        }]
+        expect(body.first['title']).to eq 'laundry'
       end
     end
   end

@@ -4,7 +4,14 @@ require'json'
 
 RSpec.describe 'API' do
   include Rack::Test::Methods
-  let(:app) { CreateTodoEndpoint.new repo: repo, entity: TodoEntity }
+
+  let(:app) do
+    CreateTodoEndpoint.new({
+      repo: repo,
+      entity: TodoEntity,
+      serializer: TodosApiSerializer.new
+    })
+  end
 
   describe 'POST /todos' do
     let(:response) { post '/todos', {title: 'laundry', completed: 'true'}.to_json, { 'Content-Type' => 'application/json' } }
