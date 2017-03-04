@@ -4,7 +4,7 @@ module Todo
 
     dependency :repo
     dependency :entity
-    dependency :serializer
+    dependency :serialize
 
     def call(env)
       body_params = JSON.parse(env['rack.input'].read)
@@ -14,7 +14,7 @@ module Todo
       [
         201,
         {'Content-Type' => 'application/json', 'Location' => "/todos/#{todo.id}"},
-        [serializer.dump(todo).to_json]
+        [serialize.(todo).to_json]
       ]
     end
   end

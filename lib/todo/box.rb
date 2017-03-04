@@ -26,7 +26,8 @@ module Todo
         letc(:create) { CreateTodoEndpoint.new }
         letc(:delete) { DeleteTodoEndpoint.new }
         letc(:delete_all) { DeleteAllTodosEndpoint.new }
-        let(:serializer) { TodosApiSerializer.new }
+        letc(:serialize) { TodosApiSerializer.new }
+        let(:todo_path) { -> (todo) { "/todos/#{todo.id}" } }
       end
     end
   end

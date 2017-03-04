@@ -58,6 +58,7 @@ RSpec.describe 'API' do
       get "/todos"
       expect(last_response.status).to be 200
       expect(response_body.first).to include('title' => 'laundry')
+      expect(response_body.first['url']).to match(/^\/todos\/.*/)
     end
   end
 
@@ -109,7 +110,6 @@ RSpec.describe 'API' do
     end
   end
 
-  it 'has a completed field'
   it 'has a patch verb'
   it 'has a URL field'
 end

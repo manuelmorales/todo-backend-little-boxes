@@ -4,9 +4,9 @@ require'json'
 
 RSpec.describe 'API' do
   include Rack::Test::Methods
-  let(:app) { ListTodosEndpoint.new repo: repo, serializer: serializer }
+  let(:app) { ListTodosEndpoint.new repo: repo, serialize: serialize }
   let(:todo) { TodoEntity.new title: 'laundry' }
-  let(:serializer) { TodosApiSerializer.new }
+  let(:serialize) { -> (todo) { { title: todo.title } } }
 
   let(:repo) do
     double(:repo).tap do |r|

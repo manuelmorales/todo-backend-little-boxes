@@ -9,7 +9,7 @@ RSpec.describe 'API' do
     CreateTodoEndpoint.new({
       repo: repo,
       entity: TodoEntity,
-      serializer: TodosApiSerializer.new
+      serialize: -> (todo) { { title: 'laundry' } },
     })
   end
 

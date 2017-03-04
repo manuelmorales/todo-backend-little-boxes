@@ -10,11 +10,11 @@ RSpec.describe 'TodoEntity' do
   end
 
   it 'has a completed' do
-    todo = TodoEntity.new completed: true
-    expect(todo.completed).to be true
-
-    todo.completed = false
+    todo = TodoEntity.new
     expect(todo.completed).to be false
+
+    todo.completed = true
+    expect(todo.completed).to be true
   end
 
   it 'has an id' do
