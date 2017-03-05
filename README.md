@@ -6,6 +6,10 @@ This is a simple implementation of the
 [Todo-Backend](https://www.todobackend.com/) API spec using
 [LittleBoxes](https://github.com/manuelmorales/little-boxes).
 
+* Live Heroku app: [https://todo-backend-little-boxes.herokuapp.com/todos](https://todo-backend-little-boxes.herokuapp.com/todos).
+* Todo-Backend tests: [https://www.todobackend.com/specs/index.html?https://todo-backend-little-boxes.herokuapp.com/todos](https://www.todobackend.com/specs/index.html?https://todo-backend-little-boxes.herokuapp.com/todos).
+* Todo-Backend client: [https://www.todobackend.com/client/index.html?https://todo-backend-little-boxes.herokuapp.com/todos](https://www.todobackend.com/client/index.html?https://todo-backend-little-boxes.herokuapp.com/todos).
+
 Installation:
 
 ```bash
