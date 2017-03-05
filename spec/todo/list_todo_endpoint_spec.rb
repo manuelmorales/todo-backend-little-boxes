@@ -2,7 +2,7 @@ require_relative '../helper'
 require 'rack/test'
 require'json'
 
-RSpec.describe 'API' do
+RSpec.describe 'ListTodosEndpoint' do
   include Rack::Test::Methods
   let(:app) { ListTodosEndpoint.new repo: repo, serialize: serialize }
   let(:todo) { TodoEntity.new title: 'laundry' }
@@ -14,19 +14,19 @@ RSpec.describe 'API' do
     end
   end
 
-  describe 'GET /todos' do
-    let(:response) { get '/todos' }
+  let(:response) { get '/todos' }
 
-    describe 'on success' do
-      it 'returns 200' do
-        expect(response.status).to eq 200
-      end
+  describe 'on success' do
+    it 'returns 200' do
+      get '/todos'
+      expect(last_response.status).to eq 200
+    end
 
-      it 'returns the todos in the body as JSON' do
-        expect(response.headers['Content-Type']).to match('application/json')
-        body = JSON.parse(response.body)
-        expect(body.first['title']).to eq 'laundry'
-      end
+    it 'returns the todos in the body as JSON' do
+      get '/todos'
+      expect(last_response.headers['Content-Type']).to match('application/json')
+      body = JSON.parse(last_response.body)
+      expect(body.first['title']).to eq 'laundry'
     end
   end
 end

@@ -2,7 +2,7 @@ require_relative '../helper'
 require 'rack/test'
 require'json'
 
-RSpec.describe 'DELETE /todos/:id' do
+RSpec.describe 'DeleteTodoEndpoint' do
   include Rack::Test::Methods
   let(:app) { DeleteTodoEndpoint.new repo: repo }
 

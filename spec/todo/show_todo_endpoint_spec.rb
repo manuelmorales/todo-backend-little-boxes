@@ -2,7 +2,7 @@ require_relative '../helper'
 require 'rack/test'
 require'json'
 
-RSpec.describe 'GET /todo/:id' do
+RSpec.describe 'ShowTodoEndpoint' do
   include Rack::Test::Methods
   let(:app) { ShowTodoEndpoint.new repo: repo, serialize: serialize }
   let(:todo) { TodoEntity.new id: 'the-uuid', title: 'laundry' }
