@@ -36,5 +36,3 @@ Run the tests with:
 ```bash
 ./cli test
 ```
-
-There is no live instance yet.
