@@ -1,5 +1,7 @@
 # Todo-Backend in LittleBoxes
 
+[![Build Status](https://travis-ci.org/manuelmorales/todo-backend-little-boxes.svg?branch=master)](https://travis-ci.org/manuelmorales/todo-backend-little-boxes)
+
 This is a simple implementation of the 
 [Todo-Backend](https://www.todobackend.com/) API spec using
 [LittleBoxes](https://github.com/manuelmorales/little-boxes).
