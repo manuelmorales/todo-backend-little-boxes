@@ -1,26 +1,14 @@
+require 'dotenv'
+
 module Cfg
   extend self
 
   def load
-    defaults.merge(options)
-  end
+    Dotenv.load unless ENV['RACK_ENV'] == 'production'
 
-  private
-
-  def defaults
-    { port: 9292, url: 'http://localhost:9292' }
-  end
-
-  def options
-    if File.exist? path
-      require 'yaml'
-      YAML.load(File.read path)
-    else
-      {}
+    {}.tap do |cfg|
+      cfg[:url] = ENV['URL'] || 'http://localhost:9292'
+      cfg[:port] = ENV['PORT'] || 9292
     end
-  end
-
-  def path
-    File.expand_path '../../../config.yml', __FILE__
   end
 end
