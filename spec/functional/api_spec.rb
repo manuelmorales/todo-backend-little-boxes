@@ -28,35 +28,19 @@ RSpec.describe 'API' do
     last_response.headers['Location'].split('/').last
   end
 
+  def get_todo(id)
+    get "/todos/#{id}"
+    expect(last_response.status).to be 200
+    response_body
+  end
 
   describe 'GET /todos' do
-    let(:response) { get '/todos' }
+    it 'returns the list of todos' do
+      id = create_todo
 
-    describe 'when empty' do
-      it 'returns 200' do
-        expect(response.status).to eq 200
-      end
-
-      it 'returns the list in JSON' do
-        expect(response.headers['Content-Type']).to match(/application\/json/)
-
-        body = JSON.parse(response.body)
-        expect(body).to eq []
-      end
-    end
-
-    describe 'with a Todo' do
-      let(:todo) { OpenStruct.new(title: 'laundry', completed: true, order: 0) }
-      let(:repo) { box.todos.repo }
-      before { repo.save todo }
-
-      it 'returns the list in JSON' do
-        expect(response.headers['Content-Type']).to match(/application\/json/)
-
-        body = JSON.parse(response.body)
-        expect(body.first['title']).to eq 'laundry'
-        expect(body.first['id']).not_to be nil
-      end
+      get '/todos'
+      expect(response_body.first['id']).to eq id
+      expect(last_response.headers['Access-Control-Allow-Origin']).to eq '*'
     end
   end
 
@@ -69,14 +53,14 @@ RSpec.describe 'API' do
       )
 
       expect(last_response.status).to be 201
+      expect(last_response.headers['Access-Control-Allow-Origin']).to eq '*'
       expect(response_body).to include('title' => 'laundry')
 
       id = last_response.headers['Location'].split('/').last
 
-      get "/todos/#{id}"
-      expect(last_response.status).to be 200
-      expect(response_body).to include('title' => 'laundry')
-      expect(response_body['url']).to start_with('http://example.com/todos')
+      todo = get_todo(id)
+      expect(todo).to include('title' => 'laundry')
+      expect(todo['url']).to start_with('http://example.com/todos')
     end
   end
 
@@ -89,6 +73,7 @@ RSpec.describe 'API' do
 
       delete "/todos/#{id}"
       expect(last_response.status).to be 200
+      expect(last_response.headers['Access-Control-Allow-Origin']).to eq '*'
 
       get "/todos"
       expect(last_response.status).to be 200
@@ -102,6 +87,7 @@ RSpec.describe 'API' do
 
       delete "/todos"
       expect(last_response.status).to be 200
+      expect(last_response.headers['Access-Control-Allow-Origin']).to eq '*'
 
       get "/todos"
       expect(last_response.status).to be 200
@@ -118,11 +104,12 @@ RSpec.describe 'API' do
         { title: 'new title' }.to_json,
         { 'Content-Type' => 'application/json' },
       )
-      expect(last_response.status).to be 200
 
-      get "/todos/#{id}"
       expect(last_response.status).to be 200
-      expect(response_body['title']).to eq 'new title'
+      expect(last_response.headers['Access-Control-Allow-Origin']).to eq '*'
+
+      todo = get_todo(id)
+      expect(todo['title']).to eq 'new title'
     end
   end
 
@@ -131,6 +118,7 @@ RSpec.describe 'API' do
       id = create_todo
       get "/todos/#{id}"
       expect(last_response.status).to be 200
+      expect(last_response.headers['Access-Control-Allow-Origin']).to eq '*'
     end
   end
 
