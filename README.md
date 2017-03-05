@@ -1,7 +1,8 @@
 # Todo-Backend in LittleBoxes
 
-This is a simple implementation of the Todo-Backend API spec using
-[LittleBoxes](github.com/manuelmorales/little-boxes).
+This is a simple implementation of the 
+[Todo-Backend](https://www.todobackend.com/) API spec using
+[LittleBoxes](https://github.com/manuelmorales/little-boxes).
 
 Installation:
 
