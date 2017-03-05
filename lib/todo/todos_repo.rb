@@ -1,4 +1,5 @@
 require 'little_boxes'
+require 'securerandom'
 
 module Todo
   class TodosRepo
