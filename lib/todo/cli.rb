@@ -14,6 +14,18 @@ module Todo
       box.app.start
     end
 
+    desc 'start', 'Starts the Puma and any other required thread'
+    def start(*args)
+      box.app.start
+    end
+
+    desc 'console', 'Pry console with the app available'
+    define_method :console do
+      puts 'Use `box = Todo::Box.new` to inspect the app itself'
+      require'pry'
+      Pry.start
+    end
+
     private
 
     def box

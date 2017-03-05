@@ -4,9 +4,12 @@ module Todo
 
     def initialize(attrs = {})
       @completed = false
+      self.attributes = attrs
+    end
 
+    def attributes=(attrs)
       attrs.each do |key, value|
-        send "#{key}=", value
+        method(:"#{key}=").call value
       end
     end
   end

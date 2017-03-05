@@ -32,4 +32,10 @@ RSpec.describe 'TodoEntity' do
     todo.order = 21
     expect(todo.order).to be 21
   end
+
+  it 'allows mass assignment' do
+    todo = TodoEntity.new
+    todo.attributes = { completed: true }
+    expect(todo.completed).to be true
+  end
 end

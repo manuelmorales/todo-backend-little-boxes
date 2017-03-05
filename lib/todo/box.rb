@@ -28,8 +28,10 @@ module Todo
         letc(:show) { ShowTodoEndpoint.new }
         letc(:list) { ListTodosEndpoint.new }
         letc(:create) { CreateTodoEndpoint.new }
+        letc(:update) { UpdateTodoEndpoint.new }
         letc(:delete) { DeleteTodoEndpoint.new }
         letc(:delete_all) { DeleteAllTodosEndpoint.new }
+
         letc(:serialize) { TodosApiSerializer.new }
         let(:todo_url) { |box| box.rack.router.method(:todo_url) }
       end

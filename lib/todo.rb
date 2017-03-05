@@ -1,4 +1,5 @@
 $LOAD_PATH << File.dirname(__FILE__)
+require 'little_boxes'
 
 module Todo
   autoload :VERSION, 'todo/version'

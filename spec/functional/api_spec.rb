@@ -109,6 +109,23 @@ RSpec.describe 'API' do
     end
   end
 
+  describe 'PATCH /todos/:id' do
+    it 'updates all todos' do
+      id = create_todo
+
+      patch(
+        "/todos/#{id}",
+        { title: 'new title' }.to_json,
+        { 'Content-Type' => 'application/json' },
+      )
+      expect(last_response.status).to be 200
+
+      get "/todos/#{id}"
+      expect(last_response.status).to be 200
+      expect(response_body['title']).to eq 'new title'
+    end
+  end
+
   describe 'GET /todo/:id' do
     it 'returns the todo' do
       id = create_todo
@@ -124,7 +141,4 @@ RSpec.describe 'API' do
       expect(response.headers['Access-Control-Allow-Origin']).to eq '*'
     end
   end
-
-  it 'has a patch verb'
-  it 'has a URL field'
 end

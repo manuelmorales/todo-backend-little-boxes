@@ -23,6 +23,7 @@ module Todo
         r.get '/todos', to: todos.list
         r.get '/todos/:id', to: todos.show
         r.post '/todos', to: todos.create
+        r.patch '/todos/:id', to: todos.update
         r.delete '/todos/:id', to: todos.delete
         r.delete '/todos', to: todos.delete_all
         r.options '/*', to: allow_cors_middleware.new

@@ -6,7 +6,7 @@ RSpec.describe 'TodosRepo' do
   let(:repo) { TodosRepo.new }
   let(:store) { repo.store }
 
-  it 'can store a todo in the store' do
+  it 'saves a new todo' do
     todo = OpenStruct.new(title: 'desc', completed: true, order: 0)
 
     repo.save(todo)
@@ -18,12 +18,28 @@ RSpec.describe 'TodosRepo' do
     expect(data[:order]).to eq 0
   end
 
+  it 'updates existing todos' do
+    todo = OpenStruct.new(title: 'desc', completed: true, order: 0)
+    repo.save(todo)
+    id = todo.id
+
+    todo.title = 'new title'
+    repo.save(todo)
+
+    data = store[id]
+
+    expect(data[:title]).to eq 'new title'
+  end
+
   it 'provides an id' do
     todo = OpenStruct.new
 
     repo.save(todo)
 
+    data = store.values.first
+
     expect(todo.id).not_to be_nil
+    expect(data[:id]).to eq(todo.id)
   end
 
   it 'finds the todo' do

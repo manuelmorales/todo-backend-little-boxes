@@ -8,7 +8,7 @@ module Todo
     dependency(:new_todo) { OpenStruct.method(:new) }
 
     def save(todo)
-      todo.id = SecureRandom.uuid
+      todo.id = SecureRandom.uuid unless todo.id
 
       store[todo.id] = {
         id: todo.id,
