@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rake'
 gem 'thor'
 gem 'puma'
-gem 'little_boxes', '~> 0.4', path: '../little_boxes'
+gem 'little_boxes', '~> 0.5'
 gem 'rack'
 gem 'hanami-router'
 
