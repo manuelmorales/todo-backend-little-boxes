@@ -1,0 +1,57 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coderay (1.1.1)
+    diff-lcs (1.2.5)
+    hanami-router (0.6.2)
+      hanami-utils (~> 0.7)
+      http_router (~> 0.11)
+    hanami-utils (0.9.2)
+    http_router (0.11.2)
+      rack (>= 1.0.0)
+      url_mount (~> 0.2.1)
+    little_boxes (0.5.0)
+    method_source (0.8.2)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    puma (3.6.2)
+    rack (2.0.1)
+    rack-test (0.6.3)
+      rack (>= 1.0)
+    rake (12.0.0)
+    rspec (3.5.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
+    rspec-core (3.5.4)
+      rspec-support (~> 3.5.0)
+    rspec-expectations (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-mocks (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-support (3.5.0)
+    slop (3.6.0)
+    thor (0.19.4)
+    url_mount (0.2.1)
+      rack
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  hanami-router
+  little_boxes (~> 0.5)
+  pry
+  puma
+  rack
+  rack-test
+  rake
+  rspec
+  thor
+
+BUNDLED WITH
+   1.14.3
