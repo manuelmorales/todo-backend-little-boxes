@@ -8,12 +8,9 @@ gem 'puma'
 gem 'little_boxes', '~> 0.5'
 gem 'rack'
 gem 'hanami-router'
+gem 'pry'
 
-group :development, :test do
+group :test do
   gem 'rspec'
-  gem 'pry'
-end
-
-group :development, :test do
   gem 'rack-test'
 end
