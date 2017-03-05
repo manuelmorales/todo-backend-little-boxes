@@ -28,8 +28,8 @@ module Todo
       store.values.map(&new_todo)
     end
 
-    def delete(id)
-      store.delete(id)
+    def delete(todo)
+      store.delete(todo.id)
     end
 
     def delete_all

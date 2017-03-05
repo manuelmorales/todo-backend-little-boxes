@@ -89,9 +89,12 @@ RSpec.describe 'TodosRepo' do
     expect(todos[1].title).to eq 'homework'
   end
 
-  it 'deletes todos by id' do
-    store[37] = {}
-    repo.delete(37)
+  it 'deletes todos by todo' do
+    todo = OpenStruct.new(title: 'desc', completed: true, order: 0)
+    repo.save(todo)
+
+    repo.delete(todo)
+
     expect(store).to be_empty
   end
 

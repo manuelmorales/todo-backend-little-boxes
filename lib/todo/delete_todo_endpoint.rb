@@ -8,9 +8,14 @@ module Todo
 
     def call(env)
       id = env['router.params'][:id]
-      repo.delete id
 
-      [200, {}, []]
+      if todo = repo.find(id)
+        repo.delete todo
+
+        [200, {}, []]
+      else
+        [404, {}, []]
+      end
     end
   end
 end
